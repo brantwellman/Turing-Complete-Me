@@ -11,7 +11,6 @@ class CompleteMeTest < Minitest::Test
     @completion = CompleteMe.new
   end
 
-
   def test_trie_exists
     assert completion
   end
@@ -37,11 +36,21 @@ class CompleteMeTest < Minitest::Test
     assert completion.letter_links.has_key?("w")
   end
 
-  # def test_it_inserts_letter_into_next_node_if_key_exists_in_previous_node_hash
-  #   skip
-  #   completion.insert("a")
-  #   completion.insert("a")
-  # end
+  def test_it_counts_single_letters_put_into_trie_as_a_word
+    completion.insert("w")
+    assert_equal 1, completion.count
+  end
 
+  def test_it_returns_the_count_of_words_that_are_added_to_it
+    completion.insert("We")
+    completion.insert("Week")
+    completion.insert("pizza")
+    assert_equal 3, completion.count
+  end
+
+  def test_it_counts_single_words_properly
+    completion.insert("test")
+    assert_equal 1, completion.count
+  end
 
 end
