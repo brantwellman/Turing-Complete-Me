@@ -32,12 +32,16 @@ class CompleteMeTest < Minitest::Test
     assert completion.letter_links.has_key?("b")
   end
 
-  def test_it_inserts_letter_into_next_node_if_key_exists_in_previous_node_hash
-    skip
-    completion.insert("a")
-    completion.insert("a")
-
+  def test_it_adds_downcase_letter_key_to_hash_if_it_comes_in_as_capitalized
+    completion.insert("Week")
+    assert completion.letter_links.has_key?("w")
   end
+
+  # def test_it_inserts_letter_into_next_node_if_key_exists_in_previous_node_hash
+  #   skip
+  #   completion.insert("a")
+  #   completion.insert("a")
+  # end
 
 
 end

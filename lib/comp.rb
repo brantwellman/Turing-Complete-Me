@@ -5,10 +5,13 @@ require './lib/node'
 completion = CompleteMe.new
 
 # completion.add_first_to_letters("ab")
-p completion.insert("week")
+p completion.insert("We")
 p completion.insert("weekly")
 p completion.insert("weekend")
-p completion.insert("pizza")
+# p completion.insert("pia")
+p completion.insert("pi")
+p completion.insert("pia")
+
 # binding.pry
 
 # p completion.insert("")
@@ -19,3 +22,5 @@ p completion.insert("pizza")
 
 # p completion.letter_links
 p completion
+# binding.pry
+p completion.count
