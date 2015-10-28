@@ -48,6 +48,13 @@ class CompleteMe
     head.node_insert(word)
   end
 
+  def populate(string)
+    dict_arry = string.split("\n")
+    dict_arry.each do |word|
+      insert(word)
+    end
+  end
+
   def count
     head.node_count
   end

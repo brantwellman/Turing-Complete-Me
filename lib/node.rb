@@ -41,27 +41,30 @@ class Node
     return count
   end
 
-  def node_suggest(suggestion_str)
+  def node_suggest(suggest_str)
+    # end case 2 - suggest_str length is 0
+    return if suggest_str.length == 0
     # start with first letter of suggestion
-    first_letter = suggestion_str[0]
-    binding.pry
+    first_letter = suggest_str[0]
+    # binding.pry
     # get the node with that letter as key
     return [] unless letter_links.has_key?(first_letter)
     next_node = letter_links[first_letter]
-    binding.pry
+    # binding.pry
     # if that node has a true value return it's own value AND the values "below" it
-    if valid_word
-      return letter
-    end
+
+    # binding.pry
     # call suggest on that node with the suggestion_str minus the first letter
-    next_node.node_suggest(suggestion_str[1..-1])
-    binding.pry
+    next_node.node_suggest(suggest_str[1..-1])
+    # binding.pry
+    if next_node.valid_word
+      return next_node.letter
+    end
 
-
-    # end case 1 - no more leaves
-    # end case 2 - suggest_str length is 0
-    # return if suggest_str.length == 0
-    # end case 3 - no node of the first letter in suggest_str
-    # return [] unless letter_links.has_key?(first_letter)
+    # end case 1 - no more leaves - this should be a valid word...same as valid word case
+    # **end case 2 - suggest_str length is 0
+    # **return if suggest_str.length == 0
+    # **end case 3 - no node of the first letter in suggest_str
+    # **return [] unless letter_links.has_key?(first_letter)
   end
 end

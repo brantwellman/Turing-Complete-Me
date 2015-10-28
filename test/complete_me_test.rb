@@ -59,7 +59,6 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_returns_single_letter_if_it_exists_for_a_single_letter_suggestion_argument
-    skip
     completion.insert("w")
     assert_equal "w", completion.suggest("w")
   end
@@ -73,10 +72,36 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_returns_a_two_letter_suggestion
-    skip
     completion.insert("we")
     expected = "we"
     assert_equal expected, completion.suggest("w")
   end
 
+  def test_it_populates_trie_from_a_string_of_4_words_with_new_line_chars
+    completion3 = CompleteMe.new
+    dictionary = "This\nis\na\ntest"
+    completion3.populate(dictionary)
+    assert_equal 4, completion3.count
+  end
+
+  def test_it_populates_trie_from_a_string_with_1_word_with_new_line_char
+    completion4 = CompleteMe.new
+    dictionary = "This\n"
+    completion4.populate(dictionary)
+    assert_equal 1, completion4.count
+  end
+
+  def test_it_populates_trie_from_a_string_with_1_word_with_new_line_char_in_front
+    completion5 = CompleteMe.new
+    dictionary = "\nThis"
+    completion5.populate(dictionary)
+    assert_equal 1, completion5.count
+  end
+
+  def test_it_doesnt_add_a_word_to_the_tree_with_a_string_with_only_newline_character
+    completion6 = CompleteMe.new
+    dictionary = "\n"
+    completion6.populate(dictionary)
+    assert_equal 0, completion6.count
+  end
 end
