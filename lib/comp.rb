@@ -4,13 +4,17 @@ require './lib/node'
 
 completion = CompleteMe.new
 
-# completion.add_first_to_letters("ab")
-p completion.insert("We")
-p completion.insert("weekly")
-p completion.insert("weekend")
+
+# p completion.insert("we")
+p completion.insert("w")
+p completion.insert("wet")
+
+# p completion.insert("We")
+# p completion.insert("weekly")
+# p completion.insert("weekend")
+# # p completion.insert("pia")
+# p completion.insert("pi")
 # p completion.insert("pia")
-p completion.insert("pi")
-p completion.insert("pia")
 
 # binding.pry
 
@@ -21,6 +25,7 @@ p completion.insert("pia")
 
 
 # p completion.letter_links
-p completion
+# p completion.head.letter_links
 # binding.pry
-p completion.count
+# p completion.count
+p completion.suggest("w")
