@@ -1,6 +1,6 @@
 require 'pry'
-require './lib/complete_me'
-require './lib/node'
+require_relative 'complete_me'
+require_relative 'node'
 
 completion = CompleteMe.new
 
@@ -8,7 +8,7 @@ completion = CompleteMe.new
 # words = "This\n"
 # words = "This\nis\n"
 # words = "This\nis\na\n"
-# words = "This\nis\na\ntest"
+words = "This\nis\na\ntest"
 completion.populate(words)
 # p completion.insert("we")
 # p completion.insert("w")
@@ -25,7 +25,7 @@ completion.populate(words)
 # binding.pry
 
 # p completion.insert("")
-# p completion
+p completion
 # binding.pry
 # p completion.insert("ac")
 

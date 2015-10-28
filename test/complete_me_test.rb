@@ -1,6 +1,6 @@
 require 'pry'
-require './lib/complete_me'
-require './lib/node'
+require_relative '../lib/complete_me'
+require_relative '../lib/node'
 require 'minitest'
 require 'minitest/autorun'
 

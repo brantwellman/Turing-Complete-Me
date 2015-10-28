@@ -1,4 +1,4 @@
-require './lib/complete_me'
+require_relative 'complete_me'
 require 'pry'
 
 class Node
@@ -66,5 +66,9 @@ class Node
     # **return if suggest_str.length == 0
     # **end case 3 - no node of the first letter in suggest_str
     # **return [] unless letter_links.has_key?(first_letter)
+  end
+
+  def node_select(suggestion_str, desired_word)
+
   end
 end

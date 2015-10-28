@@ -1,16 +1,38 @@
 require 'pry'
-require './lib/node'
+require_relative 'node'
 
 class CompleteMe
   attr_reader :letter_links, :head
 
-  # , :valid_word, :letter
-# valid_word=false,
   def initialize(a_letter="")
     @letter = a_letter
     @head = Node.new
-    # @valid_word = valid_word
   end
+
+  def insert(word)
+    head.node_insert(word)
+  end
+
+  def populate(string)
+    dict_arry = string.split("\n")
+    dict_arry.each do |word|
+      insert(word)
+    end
+  end
+
+  def count
+    head.node_count
+  end
+
+  def suggest(suggestion_str)
+    head.node_suggest(suggestion_str)
+  end
+
+  def select(suggestion_str, desired_word)
+    head.node_select(suggestion_str, desired_word)
+  end
+
+end
 
   # def add_first_letter_to_letter_links(word)
   #   if word.size == 1
@@ -44,25 +66,6 @@ class CompleteMe
   #   return count
   # end
 
-  def insert(word)
-    head.node_insert(word)
-  end
-
-  def populate(string)
-    dict_arry = string.split("\n")
-    dict_arry.each do |word|
-      insert(word)
-    end
-  end
-
-  def count
-    head.node_count
-  end
-
-  def suggest(suggestion_str)
-    head.node_suggest(suggestion_str)
-  end
-
   # def suggest(suggestion_str)
   #   # start with first letter of suggestion
   #   first_letter = suggestion_str[0]
@@ -83,5 +86,3 @@ class CompleteMe
   #   # end case 2 - suggest_str length is 0
   #   # end case 3 - no node of the first letter in letter_link
   # end
-
-end
