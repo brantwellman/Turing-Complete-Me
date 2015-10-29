@@ -24,21 +24,34 @@ class CompleteMeTest < Minitest::Test
     assert completion.head.letter_links.has_key?("a")
   end
 
-  def test_it_adds_data_to_node_when_its_inserted
-    skip
-    assert_equal "a", completion.node.letter
-  end
-
-  def test_it_adds_second_key_to_hash_if_it_didnt_exist
+  def test_it_inserts_two_letters_into_first_hash
     completion.insert("a")
-    completion.insert("b")
+    completion.insert("best")
     assert completion.head.letter_links.has_key?("a")
     assert completion.head.letter_links.has_key?("b")
+  end
+
+  def test_it_inserts_five_letters_into_first_hash
+    completion.insert("a")
+    completion.insert("best")
+    completion.insert("cat")
+    completion.insert("dog")
+    completion.insert("elk")
+    assert completion.head.letter_links.has_key?("a")
+    assert completion.head.letter_links.has_key?("b")
+    assert completion.head.letter_links.has_key?("c")
+    assert completion.head.letter_links.has_key?("c")
+    assert completion.head.letter_links.has_key?("e")
   end
 
   def test_it_adds_downcase_letter_key_to_hash_if_it_comes_in_as_capitalized
     completion.insert("Week")
     assert completion.head.letter_links.has_key?("w")
+  end
+
+  def test_it_does_not_add_capital_to_hash_if_it_comes_in_as_capitalized
+    completion.insert("Week")
+    refute completion.head.letter_links.has_key?("W")
   end
 
   def test_it_counts_single_letters_put_into_trie_as_a_word
@@ -56,25 +69,6 @@ class CompleteMeTest < Minitest::Test
   def test_it_counts_single_words_properly
     completion.insert("test")
     assert_equal 1, completion.count
-  end
-
-  def test_it_returns_single_letter_if_it_exists_for_a_single_letter_suggestion_argument
-    completion.insert("w")
-    assert_equal "w", completion.suggest("w")
-  end
-
-  def test_it_returns_two_words_with_one_letter_suggestion
-    skip
-    completion1 = CompleteMe.new
-    completion1.insert("sit")
-    completion1.insert("soe")
-    assert_equal ["sit", "soe"], completion1.suggest("s")
-  end
-
-  def test_it_returns_a_two_letter_suggestion
-    completion.insert("we")
-    expected = "we"
-    assert_equal expected, completion.suggest("w")
   end
 
   def test_it_populates_trie_from_a_string_of_4_words_with_new_line_chars
@@ -103,5 +97,26 @@ class CompleteMeTest < Minitest::Test
     dictionary = "\n"
     completion6.populate(dictionary)
     assert_equal 0, completion6.count
+  end
+
+  def test_it_returns_single_letter_if_it_exists_for_a_single_letter_suggestion_argument
+    skip
+    completion.insert("w")
+    assert_equal "w", completion.suggest("w")
+  end
+
+  def test_it_returns_two_words_with_one_letter_suggestion
+    skip
+    completion1 = CompleteMe.new
+    completion1.insert("sit")
+    completion1.insert("soe")
+    assert_equal ["sit", "soe"], completion1.suggest("s")
+  end
+
+  def test_it_returns_a_two_letter_suggestion
+    skip
+    completion.insert("we")
+    expected = "we"
+    assert_equal expected, completion.suggest("w")
   end
 end
