@@ -3,7 +3,6 @@ require_relative 'node'
 
 class CompleteMe
   attr_reader :letter_links, :head
-  attr_accessor :word_count
 
   def initialize(a_letter="")
     @letter = a_letter

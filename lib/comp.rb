@@ -18,7 +18,7 @@ p completion.insert("wetter")
 # p completion.insert("We")
 # p completion.insert("weekly")
 p completion.insert("weekend")
-# p completion.insert("pia")
+p completion.insert("pia")
 # p completion.insert("pi")
 # p completion.insert("")
 

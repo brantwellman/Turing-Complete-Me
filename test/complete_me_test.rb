@@ -85,13 +85,6 @@ class CompleteMeTest < Minitest::Test
     assert_equal 1, completion4.count
   end
 
-  def test_it_populates_trie_from_a_string_with_1_word_with_new_line_char_in_front
-    completion5 = CompleteMe.new
-    dictionary = "\nThis"
-    completion5.populate(dictionary)
-    assert_equal 1, completion5.count
-  end
-
   def test_it_doesnt_add_a_word_to_the_tree_with_a_string_with_only_newline_character
     completion6 = CompleteMe.new
     dictionary = "\n"

@@ -2,12 +2,13 @@ require_relative 'complete_me'
 require 'pry'
 
 class Node
-  attr_accessor :letter, :letter_links, :valid_word
+  attr_accessor :letter, :letter_links, :valid_word, :word_count
 
   def initialize(data="", is_valid_word = false)
     @letter = data
     @letter_links = {}
     @valid_word = is_valid_word
+    @word_count = 0
   end
 
   def add_first_letter_to_letter_links(word)
@@ -19,6 +20,7 @@ class Node
   end
 
   def node_insert(word)
+    @word_count += 1
     word.downcase!
     until word.size == 0 do
       if letter_links.has_key?(word[0]) == false
@@ -31,19 +33,11 @@ class Node
   end
 
   def node_count
-    count = 0
-    letter_links.each do |key, value|
-        count = count + value.node_count
-    end
-    if valid_word == true
-      count += 1
-    end
-    return count
+    @word_count
   end
 
   def node_suggest(suggest_str, word_suggestions)
     new_word = ""
-
     until suggest_str.length == 0
 
       first_letter = suggest_str[0]
@@ -61,10 +55,7 @@ class Node
 
       end
       word_suggestions << new_word
-
-
     end
-
     word_suggestions
   end
 
@@ -78,9 +69,16 @@ class Node
 end
 
 
-
-
-
+# def node_count
+#   count = 0
+#   letter_links.each do |key, value|
+#       count = count + value.node_count
+#   end
+#   if valid_word == true
+#     count += 1
+#   end
+#   return count
+# end
 
 # def node_suggest(suggest_str, word_suggestions)
 #   new_word = ""
